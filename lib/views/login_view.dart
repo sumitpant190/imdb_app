@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:imdb_app/res/color.dart';
+import 'package:imdb_app/res/components/button.dart';
+import 'package:imdb_app/utils/routes/route_name.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -16,6 +18,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.orangeColor,
@@ -31,14 +34,15 @@ class _LoginScreenState extends State<LoginScreen> {
           Padding(
             padding: const EdgeInsets.all(15.0),
             child: TextFormField(
-              controller: _emailController,
-              keyboardType: TextInputType.emailAddress,
-              decoration: InputDecoration(
+                controller: _emailController,
+                keyboardType: TextInputType.emailAddress,
+                decoration: InputDecoration(
                   prefixIcon: Icon(Icons.email),
                   labelText: 'Email',
-                  focusColor: AppColors.orangeColor,
-                  hoverColor: AppColors.orangeColor),
-            ),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20),
+                      borderSide: BorderSide(color: AppColors.orangeColor)),
+                )),
           ),
           ValueListenableBuilder(
             valueListenable: _obsecurePassword,
@@ -49,6 +53,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 controller: _passwordController,
                 obscuringCharacter: '*',
                 decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        borderSide: BorderSide(color: AppColors.orangeColor)),
                     prefixIcon: Icon(Icons.email),
                     labelText: 'Password',
                     focusColor: AppColors.orangeColor,
@@ -63,6 +70,22 @@ class _LoginScreenState extends State<LoginScreen> {
                           : Icon(Icons.visibility),
                     )),
               ),
+            ),
+          ),
+          SizedBox(
+            height: height * 0.05,
+          ),
+          MyButton(title: 'Login', onPressed: () {}),
+          SizedBox(
+            height: height * 0.02,
+          ),
+          InkWell(
+            onTap: () {
+              Navigator.pushNamed(context, RoutesName.signUp);
+            },
+            child: Text(
+              "Don't have an account? SignUp here",
+              style: TextStyle(fontSize: 17),
             ),
           )
         ],
