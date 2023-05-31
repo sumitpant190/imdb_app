@@ -1,7 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:imdb_app/utils/text.dart';
-import 'package:imdb_app/utils/utils.dart';
 import 'package:imdb_app/view_model/auth_view_model.dart';
 import 'components/top_rated.dart';
 import 'components/trending.dart';
@@ -28,7 +27,7 @@ class HomeView extends StatelessWidget {
         title: ModifiedText(text: 'Movie App'),
         actions: [
           Padding(
-            padding: EdgeInsets.only(right: 8, top: 20),
+            padding: EdgeInsets.only(right: 10, top: 20),
             child: InkWell(
               onTap: () {
                 authViewModel.signOut(context);

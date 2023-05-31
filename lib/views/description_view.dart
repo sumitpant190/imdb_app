@@ -31,12 +31,14 @@ class Description extends StatelessWidget {
                       child: Container(
                     height: 250,
                     width: MediaQuery.of(context).size.width,
-                    child: Image.network(bannerUrl, fit: BoxFit.cover),
+                    child: Image.network(bannerUrl != null ? bannerUrl : '',
+                        fit: BoxFit.cover),
                   )),
                   Positioned(
                       bottom: 12,
                       child: ModifiedText(
-                        text: '⭐ Average rating - ' + vote,
+                        text:
+                            '⭐ Average rating - ' + (vote != null ? vote : ''),
                         size: 16,
                       )),
                 ],
@@ -55,7 +57,8 @@ class Description extends StatelessWidget {
             Container(
               padding: EdgeInsets.only(left: 10),
               child: ModifiedText(
-                text: 'Releasing on - ' + launched_on,
+                text: 'Releasing on - ' +
+                    (launched_on != null ? launched_on : ''),
                 size: 14,
               ),
             ),
@@ -65,12 +68,12 @@ class Description extends StatelessWidget {
                   padding: EdgeInsets.only(right: 4),
                   height: 200,
                   width: 100,
-                  child: Image.network(posterUrl),
+                  child: Image.network(posterUrl != null ? posterUrl : ''),
                 ),
                 Flexible(
                   child: Container(
                     child: ModifiedText(
-                      text: description,
+                      text: description != null ? description : 'Not loaded',
                     ),
                   ),
                 )

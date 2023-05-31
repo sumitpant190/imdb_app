@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ModifiedText extends StatelessWidget {
-  final String text;
+  final String? text;
   final Color? color;
   final double? size;
 
@@ -17,7 +17,7 @@ class ModifiedText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(text,
+    return Text(text!,
         style: GoogleFonts.breeSerif(
           color: Colors.white,
           fontSize: size,

@@ -9,14 +9,11 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => HomeViewModel(),
-      child: Consumer<HomeViewModel>(
-        builder: (context, viewModel, _) => HomeView(
-          trendingMovies: viewModel.trendingMovies,
-          topRatedMovies: viewModel.topRatedMovies,
-          tv: viewModel.tv,
-        ),
+    return Consumer<HomeViewModel>(
+      builder: (context, viewModel, _) => HomeView(
+        trendingMovies: viewModel.trendingMovies,
+        topRatedMovies: viewModel.topRatedMovies,
+        tv: viewModel.tv,
       ),
     );
   }

@@ -27,6 +27,8 @@ class HomeViewModel extends ChangeNotifier {
     trendingMovies = trendingResult['results'];
     topRatedMovies = topRatedResult['results'];
     tv = tvResult['results'];
+    print('printing tv');
+    print(tv);
 
     notifyListeners();
   }
