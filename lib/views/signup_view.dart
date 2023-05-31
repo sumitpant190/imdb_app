@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:imdb_app/utils/utils.dart';
+import 'package:imdb_app/view_model/auth_view_model.dart';
+import 'package:provider/provider.dart';
 
 import '../res/color.dart';
-import '../res/components/button.dart';
+import 'components/button.dart';
 import '../utils/routes/route_name.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -19,6 +22,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final authViewModel = Provider.of<AuthViewModel>(context);
     final height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
@@ -76,7 +80,20 @@ class _SignUpScreenState extends State<SignUpScreen> {
           SizedBox(
             height: height * 0.05,
           ),
-          MyButton(title: 'SignUp', onPressed: () {}),
+          MyButton(
+              title: 'SignUp',
+              onPressed: () {
+                if (_emailController.text.isEmpty) {
+                  Utils.snackbar('Please enter valid email', context);
+                } else if (_passwordController.text.isEmpty) {
+                  Utils.snackbar('Please enter password', context);
+                } else if (_passwordController.text.length < 6) {
+                  Utils.snackbar('Password must be at least 6 digit', context);
+                } else {
+                  authViewModel.signUpWithEmailAndPassword(
+                      _emailController.text, _passwordController.text, context);
+                }
+              }),
           SizedBox(
             height: height * 0.02,
           ),

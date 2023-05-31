@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:imdb_app/res/color.dart';
-import 'package:imdb_app/res/components/button.dart';
+import 'package:imdb_app/views/components/button.dart';
 import 'package:imdb_app/utils/routes/route_name.dart';
+import 'package:imdb_app/view_model/auth_view_model.dart';
+
+import '../utils/utils.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -15,6 +18,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
+  final AuthViewModel authViewModel = AuthViewModel();
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +79,21 @@ class _LoginScreenState extends State<LoginScreen> {
           SizedBox(
             height: height * 0.05,
           ),
-          MyButton(title: 'Login', onPressed: () {}),
+          MyButton(
+              title: 'Login',
+              onPressed: () {
+                if (_emailController.text.isEmpty) {
+                  Utils.snackbar('Please enter valid email', context);
+                } else if (_passwordController.text.isEmpty) {
+                  Utils.snackbar('Please enter password', context);
+                } else if (_passwordController.text.length < 6) {
+                  Utils.snackbar('Password must be at least 6 digit', context);
+                } else {
+                  print('login called');
+                  authViewModel.signInWithEmailAndPassword(
+                      _emailController.text, _passwordController.text, context);
+                }
+              }),
           SizedBox(
             height: height * 0.02,
           ),
